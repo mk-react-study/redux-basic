@@ -25,7 +25,7 @@ const reducer = ( state = initialState, action ) => {
 };
 export default reducer;
 ```
-*  
+*  Create Store
  ```
  import { createStore, combineReducers } from 'redux';
 const rootReducer = combineReducers({
@@ -34,7 +34,7 @@ const rootReducer = combineReducers({
 });
 const store = createStore(rootReducer);
 ```
-* Add Redux To App
+* Add Redux Store To App
 ```
 import { Provider } from 'react-redux';
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));

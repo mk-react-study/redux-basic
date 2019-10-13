@@ -39,4 +39,33 @@ const store = createStore(rootReducer);
 import { Provider } from 'react-redux';
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 ```
-* 
+* Setup container
+```
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+class Counter extends Component {
+    render () {
+        return (
+            <div>
+                <CounterOutput value={this.props.ctr} />
+                <CounterControl label="Increment" clicked={this.props.onIncrementCounter} />
+                <CounterControl label="Add10" clicked={this.props.onAddCounter}  />
+            </div>
+        );
+    }
+}
+const mapStateToProps = state => {
+    return {
+        ctr: state.prop1.counter,
+        storedResults: state.prop2.results
+    }
+};
+const mapDispatchToProps = dispatch => {
+    return {
+        onIncrementCounter: () => dispatch({type: actionTypes.INCREMENT}),
+        onAddCounter: () => dispatch({type: actionTypes.ADD, val: 10}),
+    }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+```
